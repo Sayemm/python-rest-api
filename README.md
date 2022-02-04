@@ -12,3 +12,5 @@
 4. Retrieve his stored sentence on the database for 1 token <br/>
 
 # Project-2 (Text Similarity using NLP)
+
+1. Predicted with spacy using NLP model
