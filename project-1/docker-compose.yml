@@ -1,0 +1,12 @@
+version: "3"
+
+# build the web service from the directory ./web
+services:
+    web:
+        build: ./web
+        ports:
+            - "5000:5000"
+        links:
+            - db
+    db:
+        build: ./db
