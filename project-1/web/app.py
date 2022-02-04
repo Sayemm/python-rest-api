@@ -1,5 +1,5 @@
 """
-   Resource     Method     Path          Parameters     Status
+   Resources    Method     Path          Parameters     Status
 
 1. Register     POST       /register     username       200 OK
                                          password
