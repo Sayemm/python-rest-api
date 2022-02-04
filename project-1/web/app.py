@@ -1,8 +1,16 @@
 """
-Registration of a user
-Each user gets 10 tokens
-Store a sentence on our database for 1 token
-Retrieve his stored sentence on our database for 1 token
+   Resource     Method     Path          Parameters     Status
+
+1. Register     POST       /register     username       200 OK
+                                         password
+
+2. Store        POST       /store        username       200 OK
+                                         password       301 Out of Tokens
+                                         sentence       302 Invalid Username/Password 
+
+2. Retrieve     POST       /get          username       200 OK
+                                         password       301 Out of Tokens
+                                                        302 Invalid Username/Password                                         
 """
 
 from flask import Flask, jsonify, request
