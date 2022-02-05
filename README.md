@@ -13,4 +13,7 @@
 
 # Project-2 (Text Similarity using NLP)
 
-1. Predicted with spacy using NLP model
+1. Predicted with spacy using NLP model. <br/>
+2. Registration of a user and gets some tokens<br/>
+3. Detect similarity of 2 sentences using 1 token<br/>
+4. Refill tokens <br/>
