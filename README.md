@@ -2,7 +2,7 @@
 
 1. Designed some Python RESTful API with Flask and created its Docker Image. <br/>
 2. Used MongoDB for storing data. <br/>
-3. Supports CRUD(Create-Read-Update-Delete) operations. <br/>
+3. Used CRUD(Create-Read-Update-Delete) operations. <br/>
 
 # Project-1
 
