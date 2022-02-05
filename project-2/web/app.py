@@ -1,3 +1,19 @@
+"""
+   Resources    Method     Path          Parameters        Status
+
+1. Register     POST       /register     username          200 OK
+                                         password          301 Invalid Username
+
+2. Detect       POST       /detect       username          200 OK
+                                         password          301 Invalid Username
+                                         text1             302 Invalid Password
+                                         text2             303 Out of Tokens
+
+2. Refill       POST       /refill       username          200 OK
+                                         admin_password    301 Invalid Username
+                                                           304 Invalid Admin Password
+"""
+
 from flask import Flask, jsonify, request
 from flask_restful import Api, Resource
 from pymongo import MongoClient
@@ -119,3 +135,44 @@ class Detect(Resource):
         })
 
         return jsonify(retJson)
+
+class Refill(Resource):
+    def post(self):
+        postedData = request.get_json()
+
+        username = postedData["username"]
+        password = postedData["admin_pw"]
+        refill_amount = postedData["refill"]
+
+        if not UserExist(username):
+            retJson = {
+                "Status": 301,
+                "Message Body": "Invalid Username"
+            }
+            return jsonify(retJson)
+        
+        correct_pw = "password"
+        if not password == correct_pw:
+            retJson = {
+                "Status": 304,
+                "Message Body": "Invalid Admin Password"
+            }
+            return jsonify(retJson)
+
+        current_tokens = countTokens(username)
+
+        users.update_one({
+            "Username": username
+        }, {
+            "$set": {
+                "Tokens": refill_amount+current_tokens
+            }
+        })
+
+        retJson = {
+            "Status": 200,
+            "Message Body": "Refilled Successfully"
+        }
+        return jsonify(retJson)
+
+
