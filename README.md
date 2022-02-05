@@ -1,4 +1,4 @@
-# Python RESTful API
+# Python REST API
 
 1. Designed some Python RESTful API with Flask and created its Docker Image. <br/>
 2. Used MongoDB for storing data. <br/>
