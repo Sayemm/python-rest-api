@@ -159,13 +159,11 @@ class Refill(Resource):
             }
             return jsonify(retJson)
 
-        current_tokens = countTokens(username)
-
         users.update_one({
             "Username": username
         }, {
             "$set": {
-                "Tokens": refill_amount+current_tokens
+                "Tokens": refill_amount
             }
         })
 
@@ -176,3 +174,9 @@ class Refill(Resource):
         return jsonify(retJson)
 
 
+api.add_resource(Register, "/register")
+api.add_resource(Detect, "/detect")
+api.add_resource(Refill, "/refill")
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", debug=True)
