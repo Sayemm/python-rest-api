@@ -28,7 +28,7 @@ db = client.SimilarityDB
 users = db["Users"]
 
 def UserExist(username):
-    if users.find({"Username":username}).count() == 0:
+    if users.find_one({"Username": username}) is None:
         return False
     else:
         return True
@@ -113,11 +113,11 @@ class Detect(Resource):
             return jsonify(retJson)
 
         # calculate the edit distance
-        nlp = spacy.load("en_core_web_sm")
+        nlp = spacy.load("en_core_web_sm", disable=['tagger', 'ner'])
         text1 = nlp(text1)
         text2 = nlp(text2)
 
-        # ratio is between 0-1, closer to 1 means more similar
+        # # # ratio is between 0-1, closer to 1 means more similar
         ratio = text1.similarity(text2)
 
         retJson = {
